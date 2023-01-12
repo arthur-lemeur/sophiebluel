@@ -1,5 +1,7 @@
 import {Images} from './ImagesClass.js';
 import {Filter} from './FiltersClass.js';
+import {createHeader, createEditButton, createLogout} from "./EditIndex.js";
+
 
 async function fetchGallery() {
     const r = await fetch('http://localhost:5678/api/works', {
@@ -82,7 +84,7 @@ const toggleFilter = (e) => {
     const createFilteredGalleryImage = () => {
         fetchGallery().then(async i => {
             const images = i.map((img) => new Images(img));
-            const filteredImages = images.filter(image => image.categoryName == filter)
+            const filteredImages = images.filter(image => image.categoryName === filter)
             for (const filteredImage of filteredImages) {
                 await filteredImage.createGallery();
             }
@@ -102,27 +104,25 @@ const toggleFilter = (e) => {
     );
 
 }
-
-
-//    for (const figure of figures) {
-//       const figureCategory = figure.getAttribute('category-id');
-
-
-
-/*
-if (filter === "all") {
-    figure.classList.remove('hide-figure');
-} else if (figureCategory != filter) {
-    figure.classList.add('hide-figure');
-} else {
-    figure.classList.remove('hide-figure');
+const storage = sessionStorage.getItem("token");
+if (storage !== null) {
+    createHeader();
+    createEditButton();
+    createLogout()
 }
 
-if (figureCategory != filter) {
-
-
-    figure.classList.add('hide-figure');
-} else {
-    figure.classList.remove('hide-figure');
+const createEditionGallery = () => {
+    fetchGallery().then(async i => {
+        const images = i.map((img) => new Images(img));
+        for (const image of images) {
+            await image.editGallery();
+        }
+        document.querySelector('.spinner-border').style.display = 'none';
+        setTimeout(() => {
+            const figures = document.querySelectorAll('#galleryEdition figure');
+            figures.forEach(f => f.style.opacity = '1');
+        }, 300);
+    });
 }
-}*/
+
+createEditionGallery();

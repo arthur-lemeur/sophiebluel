@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
+	<script src="https://kit.fontawesome.com/a9faad54a1.js" crossorigin="anonymous"></script>
 	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,6 +11,8 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script type="module" src="assets/app.js" defer></script>
+	<script type="module" src="assets/EditIndex.js" defer></script>
+	<script type="module" src="assets/modal.js" defer></script>
 </head>
 <body>
 <header>
@@ -18,7 +21,7 @@
 		<ul>
 			<li><a href="index.html">projets</a></li>
 			<li><a href="#contact">contact</a></li>
-			<li><a href="login.html">login</a></li>
+			<li><a href="login.html" id="login-button">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -36,10 +39,11 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="titleProjects">
+			<h2>Mes Projets</h2>
+		</div>
 		<div class="btn-group" role="group">
 			<button type="button" class="btn-filter active" data-filter="all">Tous</button>
-
 		</div>
 		<div class="galleryContainer">
 			<div class="spinner-border" role="status"></div>
@@ -68,6 +72,17 @@
 		</form>
 	</section>
 </main>
+<aside id="modal1" class="modal" aria-hidden="true" aria-labelledby="titleModal" style="display: none">
+	<div class="modal-wrapper js-modal-stop">
+		<i class="fa-solid fa-xmark js-modal-close"></i>
+		<h3 id="titleModal">Galerie photo</h3>
+		<div id="galleryEdition">
+
+		</div>
+		<button class="add-picture">Ajouter une photo</button>
+		<a href="#" class="delete-gallery">Supprimer la galerie</a>
+	</div>
+</aside>
 
 <footer>
 	<nav>
