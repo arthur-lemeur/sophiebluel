@@ -1,6 +1,6 @@
-import {Images} from './ImagesClass.js';
-import {Filter} from './FiltersClass.js';
-import {createHeader, createEditButton, createLogout} from "./EditIndex.js";
+import {Image} from './Classes/ImagesClass.js';
+import {Filter} from './Classes/FiltersClass.js';
+import {createHeader, createEditButton, createLogout} from "./editIndex.js";
 
 
 async function fetchGallery() {
@@ -17,7 +17,6 @@ async function fetchGallery() {
 }
 
 
-
 async function fetchCategories() {
     const r = await fetch('http://localhost:5678/api/categories', {
         method: 'GET',
@@ -32,10 +31,11 @@ async function fetchCategories() {
 }
 
 
-
-const createGalleryImage = () => {
+export const createGalleryImage = () => {
     fetchGallery().then(async i => {
-        const images = i.map((img) => new Images(img));
+
+        const images = i.map((img) => new Image(img));
+
         for (const image of images) {
             await image.createGallery();
         }
@@ -46,7 +46,6 @@ const createGalleryImage = () => {
         }, 300);
     });
 }
-
 
 
 const createGalleryCategories = () => {
@@ -63,8 +62,6 @@ const createGalleryCategories = () => {
     });
 }
 
-createGalleryImage();
-createGalleryCategories();
 
 
 
@@ -79,41 +76,36 @@ const toggleFilter = (e) => {
     figures.forEach(f => f.style.opacity = '0');
 
     setTimeout(() => {
-    gallery.innerHTML ='';
+            gallery.innerHTML = '';
 
-    const createFilteredGalleryImage = () => {
-        fetchGallery().then(async i => {
-            const images = i.map((img) => new Images(img));
-            const filteredImages = images.filter(image => image.categoryName === filter)
-            for (const filteredImage of filteredImages) {
-                await filteredImage.createGallery();
+            const createFilteredGalleryImage = () => {
+                fetchGallery().then(async i => {
+                    const images = i.map((img) => new Image(img));
+                    const filteredImages = images.filter(image => image.categoryName === filter)
+                    for (const filteredImage of filteredImages) {
+                        await filteredImage.createGallery();
+                    }
+                    document.querySelector('.spinner-border').style.display = 'none';
+                    setTimeout(() => {
+                        const figures = document.querySelectorAll('.gallery figure');
+                        figures.forEach(f => f.style.opacity = '1');
+                    }, 300);
+                });
             }
-            document.querySelector('.spinner-border').style.display = 'none';
-            setTimeout(() => {
-                const figures = document.querySelectorAll('.gallery figure');
-                figures.forEach(f => f.style.opacity = '1');
-            }, 300);
-        });
-    }
             if (filter === 'all') {
                 createGalleryImage();
             } else {
                 createFilteredGalleryImage();
-            };
-    }, 400
+            }
+            ;
+        }, 400
     );
 
 }
-const storage = sessionStorage.getItem("token");
-if (storage !== null) {
-    createHeader();
-    createEditButton();
-    createLogout()
-}
 
-const createEditionGallery = () => {
+export const createEditionGallery = () => {
     fetchGallery().then(async i => {
-        const images = i.map((img) => new Images(img));
+        const images = i.map((img) => new Image(img));
         for (const image of images) {
             await image.editGallery();
         }
@@ -125,4 +117,19 @@ const createEditionGallery = () => {
     });
 }
 
-createEditionGallery();
+const init = () => {
+    createGalleryCategories();
+    createGalleryImage();
+}
+
+init();
+
+const storage = sessionStorage.getItem("token");
+if (storage !== null) {
+    createHeader();
+    createEditButton();
+    createLogout();
+}
+
+
+
