@@ -11,17 +11,18 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(helmet());
-app.use('/images', express.static(path.join(__dirname, 'images')))
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/images/profile', express.static(path.join(__dirname, 'images/profile')));
 
 const db = require("./models");
 const userRoutes = require('./routes/user.routes');
 const categoriesRoutes = require('./routes/categories.routes');
 const worksRoutes = require('./routes/works.routes');
-const profilePictureRoutes = require('./routes/profilePicture.routes')
+const profilePictureRoutes = require('./routes/profilePicture.routes');
 db.sequelize.sync().then(()=> console.log('db is ready'));
 app.use('/api/users', userRoutes);
 app.use('/api/categories', categoriesRoutes);
 app.use('/api/works', worksRoutes);
-app.use('api/profile/picture', profilePictureRoutes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+app.use('/api/profile/picture', profilePictureRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 module.exports = app;

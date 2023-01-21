@@ -15,8 +15,8 @@
 	<script type="module" src="assets/JS/modal.js" defer></script>
 	<script type="module" src="assets/JS/postWork.js" defer></script>
 	<script type="module" src="assets/JS/previewImage.js" defer></script>
-	<script type="module" src="assets/JS/changeProfilePicture.js" defer></script>
 	<script type="module" src="assets/JS/changeProfilePresentation.js" defer></script>
+
 </head>
 <body>
 <header>
@@ -33,7 +33,7 @@
 <main>
 	<section id="introduction">
 		<figure>
-			<img id="profile-picture" src="./assets/images/sophie-bluel.png" alt="">
+			<img id="profile-picture" src="" alt="" crossorigin="anonymous">
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -78,6 +78,7 @@
 		</form>
 	</section>
 </main>
+
 <aside id="modal1" class="modal" aria-hidden="true" aria-labelledby="titleModal">
 	<div class="modal-wrapper js-modal-stop">
 		<i class="fa-solid fa-xmark js-modal-close"></i>
@@ -89,6 +90,7 @@
 		<a href="#" class="delete-gallery">Supprimer la galerie</a>
 	</div>
 </aside>
+
 <aside id="modal2" class="modal" aria-hidden="true" aria-labelledby="titleModal2">
 	<div class="modal-wrapper js-modal-stop">
 		<i class="fa-solid fa-arrow-left-long"></i>
@@ -116,7 +118,26 @@
 			</select>
 			<button>Valider</button>
 		</form>
+	</div>
+</aside>
 
+<aside id="modal4" class="modal" aria-hidden="true" aria-labelledby="titleModal4">
+	<div class="modal-wrapper js-modal-stop">
+		<i class="fa-solid fa-xmark js-modal-close"></i>
+		<h3 id="titleModal4">Ajout photo de profil</h3>
+		<form id="upload-p-picture">
+			<div id="profile-p-upload-form">
+				<i class="fa-regular fa-image"></i>
+				<input type="file" id="picture" name="image" accept="image/*" required>
+				<label for="picture" id="picture-upload-label">+ Ajouter Photo</label>
+				<p>jpg, png : 4mo max</p>
+			</div>
+			<div id="previewImage2">
+				<i class="fa-solid fa-circle-arrow-left"></i>
+				<img src="" alt="preview"/>
+			</div>
+			<button>Valider</button>
+		</form>
 	</div>
 </aside>
 

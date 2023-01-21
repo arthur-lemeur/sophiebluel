@@ -209,6 +209,55 @@ paths:
           description: Unauthorized
         '400':
           description: Bad Request
+    get:
+      summary: Returns all profile pictures
+      responses:
+        '200':
+          description: Returns an array of all profile pictures
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 1
+                    title:
+                      type: string
+                      example: "Abajour Tahina"
+                    imageUrl:
+                      type: string
+                      example: "http://localhost:5678/images/abajour-tahina1651286843956.png"
+                    userId:
+                      type: integer
+                      format: int64
+                      example: 1
+        '500':
+          description: Unexpected Error
+  /profile/picture/{id}:
+    delete:
+      summary: Delete a profile picture
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of picture to be deleted
+          schema:
+            type: integer
+            format: int64
+            example: 1
+      responses:
+        '200':
+          description: Item Deleted
+        '401':
+          description: Unauthorized
+        '500':
+          description: Unexpected Behaviour
 
 
 components:

@@ -1,33 +1,16 @@
-import { suppression } from "../deleteWork.js"
+import {suppressionProfilePictures} from "../deleteWork.js"
+import {createProfilePicture} from "../getProfilePicture.js";
 
-export class Image {
+export class ProfilePicture {
 
     constructor(element) {
         this.id = element.id;
-        this.title = element.title;
         this.url = element.imageUrl;
-        this.categoryId = element.categoryId;
         this.userId = element.userId;
-        this.categoryName = element.category.name;
         this.template = document.getElementById('gallery-image-layout');
-        this.galleryContainer = document.querySelector('.gallery');
-        this.galleryEdition = document.getElementById('galleryEdition');
+        this.profileEdition = document.getElementById('profileEdition');
     }
 
-    async createGallery() {
-        try {
-            const imageTemplate = this.template.content.cloneNode(true);
-            const figure = imageTemplate.querySelector("figure");
-            figure.setAttribute('category-id', this.categoryName);
-            const img = imageTemplate.querySelector("img");
-            img.src = this.url;
-            const caption = imageTemplate.querySelector('figcaption');
-            caption.innerText = this.title;
-            this.galleryContainer.appendChild(imageTemplate);
-        } catch (e) {
-            console.log(e);
-        }
-    };
 
     async editGallery() {
         try {
@@ -43,22 +26,28 @@ export class Image {
             deleteImage.setAttribute('id', this.id);
             deleteImage.innerHTML = "<i class=\"fa-solid fa-trash-can\"></i>";
             const figure = imageTemplate.querySelector('figure');
+            figure.setAttribute('id', `image${this.id}`);
             figure.appendChild(moveImage);
             figure.appendChild(deleteImage);
             const caption = imageTemplate.querySelector('figcaption');
-            caption.innerHTML = "Editer";
-            this.galleryEdition.appendChild(imageTemplate);
-
+            caption.setAttribute('id', `figcaption${this.id}`);
+            caption.classList.add('figcaption-profile');
+            caption.innerHTML = "<button>Selectionner</button>";
+            this.profileEdition.appendChild(imageTemplate);
 
             document
-                .querySelectorAll('#modal1 .trash-button')
-                .forEach(t => t.addEventListener('click', suppression));
+                .querySelectorAll('#modal3 .trash-button')
+                .forEach(t => t.addEventListener('click', suppressionProfilePictures));
         } catch (e) {
         }
+
+        const buttons = document.querySelectorAll('.figcaption-profile button');
+
+
+        buttons.forEach(b => {
+            b.addEventListener('click', () => createProfilePicture())
+        });
     };
-
-
-
 
 
 }

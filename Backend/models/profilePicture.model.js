@@ -1,7 +1,7 @@
 
 module.exports = (sequelize, DataTypes) => {
-	const profile = sequelize.define(
-		"profile",
+	const picture = sequelize.define(
+		"picture",
 		{
 		imageUrl: {
 			type: DataTypes.STRING,
@@ -9,6 +9,6 @@ module.exports = (sequelize, DataTypes) => {
 			}
 		},
 		{timestamps:false}
-	)
-	return profile
+	);
+	return picture
 }

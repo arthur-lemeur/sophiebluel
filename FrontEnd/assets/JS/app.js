@@ -1,6 +1,7 @@
 import {Image} from './Classes/ImagesClass.js';
 import {Filter} from './Classes/FiltersClass.js';
 import {createHeader, createEditButton, createLogout} from "./editIndex.js";
+import {createProfilePicture} from "./getProfilePicture.js";
 
 
 async function fetchGallery() {
@@ -62,9 +63,6 @@ const createGalleryCategories = () => {
     });
 }
 
-
-
-
 const toggleFilter = (e) => {
     e.preventDefault();
     document.querySelector('.spinner-border').style.display = 'block';
@@ -120,6 +118,7 @@ export const createEditionGallery = () => {
 const init = () => {
     createGalleryCategories();
     createGalleryImage();
+    createProfilePicture();
 }
 
 init();

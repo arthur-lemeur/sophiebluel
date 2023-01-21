@@ -1,17 +1,17 @@
 const db = require('./../models');
-const profilePicture = db.profile
+const ProfilePicture = db.profilePicture
 
 exports.findAll = async (req, res) =>  {
-	const profile = await profilePicture.findAll();
+	const profile = await ProfilePicture.findAll();
 	return res.status(200).json(profile);
 }
 
 exports.create = async (req, res) => {
 	const host = req.get('host');
 	const userId = req.auth.userId;
-	const imageUrl = `${req.protocol}://${host}/images/${req.file.filename}`;
+	const imageUrl = `${req.protocol}://${host}/images/profile/${req.file.filename}`;
 	try{
-		const profileP = await profilePicture.create({
+		const profileP = await ProfilePicture.create({
 			imageUrl,
 			userId
 		})
@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
 
 exports.delete = async (req, res) => {
 	try{
-		await profilePicture.destroy({where:{id: req.params.id}})
+		await ProfilePicture.destroy({where:{id: req.params.id}})
 		return res.status(204).json({message: 'Work Deleted Successfully'})
 	}catch(e){
 		return res.status(500).json({error: new Error('Something went wrong')})

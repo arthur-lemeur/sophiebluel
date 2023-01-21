@@ -187,6 +187,10 @@ button:hover {
 	font: inherit;
 }
 
+#profilePicture-button {
+	cursor: pointer;
+}
+
 .titleProjects {
 	display: flex;
 	align-items: center;
@@ -292,7 +296,8 @@ margin: auto;
 }
 #contact label,
 #log-in-form  label,
-#upload-file label {
+#upload-file label,
+#upload-p-picture label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea, #log-in-form  textarea {
@@ -310,7 +315,8 @@ margin: auto;
   #log-in-form button,
   .add-picture,
   #file-upload-label,
-  #upload-file button {
+  #upload-file button,
+  #upload-p-picture button {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -412,7 +418,7 @@ footer nav ul {
 .loading-bar {
 	width: 0%;
 	height: 100%;
-	background: linear-gradient(.25turn, #18f26f, #09bd51);
+	background: linear-gradient(.25turn, #1D6154, #15493f);
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -483,11 +489,15 @@ footer nav ul {
 	margin: 50px;
 }
 
-#titleModal, #titleModal2 {
+#titleModal,
+#titleModal2,
+#titleModal3,
+#titleModal4 {
 	font-size: 26px;
 }
 
-#galleryEdition {
+#galleryEdition,
+#profileEdition {
 	width: 80%;
 	margin:auto;
 	padding: 1.5em ;
@@ -498,11 +508,13 @@ footer nav ul {
 	grid-row-gap: 20px;
 }
 
-#galleryEdition figure {
+#galleryEdition figure,
+#profileEdition figure {
 	position: relative;
 }
 
-#galleryEdition figure img {
+#galleryEdition figure img,
+#profileEdition figure img {
 	width: 100%;
 }
 
@@ -523,7 +535,8 @@ footer nav ul {
 	background-color: red;
 }
 
-#galleryEdition figure:hover .move-button {
+#galleryEdition figure:hover .move-button,
+#profileEdition figure:hover .move-button {
 	display: block;
 }
 
@@ -543,7 +556,8 @@ footer nav ul {
 	background-color: red;
 }
 
-#galleryEdition figure figcaption {
+#galleryEdition figure figcaption,
+#profileEdition figure figcaption {
 	font-size: 12px;
 	text-align: left;
 }
@@ -557,7 +571,8 @@ footer nav ul {
 
 }
 
-#image-upload-form {
+#image-upload-form,
+#upload-p-picture {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -567,30 +582,44 @@ footer nav ul {
 	background-color: #E8F1F6;
 }
 
-#image-upload-form i {
+#upload-p-picture {
+	height: 250px;
+}
+
+#profile-p-upload-form {
+	margin-top: 40px;
+}
+
+#image-upload-form i,
+#profile-p-upload-form i {
 	scale: 4;
 	width: 60px;
 	color: #B9C5CC;
 }
 
-#image-upload-form input {
+#image-upload-form input,
+#upload-p-picture input {
 	display: none;
 }
 
-#previewImage {
+#previewImage,
+#previewImage2 {
 	position: relative;
 	display: none;
 	margin-top: 1em;
+	width: 100%;
 	height: 200px;
 	background-color: #E8F1F6;
 }
 
-#previewImage img {
+#previewImage img,
+#previewImage2 img{
 	height: 100%;
 	margin: auto;
 }
 
-#previewImage i {
+#previewImage i,
+#previewImage2 i {
 	position: absolute;
 	left: 10px;
 	top: 10px;
@@ -599,7 +628,8 @@ footer nav ul {
 	color: white;
 }
 
-#file-upload-label {
+#file-upload-label,
+#picture-upload-label {
 	height: 40px;
 	width: 220px;
 	font-size: 1.2em;
@@ -612,14 +642,16 @@ footer nav ul {
 	justify-content: center;
 }
 
-#upload-file {
+#upload-file,
+#upload-p-picture {
 	display: flex;
 	flex-direction: column;
 	width: 80%;
-	margin: auto;
+	margin: 20px auto;
 }
 
-#upload-file button {
+#upload-file button,
+#upload-p-picture button {
 	border-bottom: 1px solid grey;
 	padding: 5px;
 }

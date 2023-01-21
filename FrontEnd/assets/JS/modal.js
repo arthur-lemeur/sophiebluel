@@ -1,4 +1,5 @@
 import {createEditionGallery, createGalleryImage} from "./app.js";
+import {createProfileGallery, createProfilePicture} from "./getProfilePicture.js";
 
 let modal = null;
 const focusableSelector = "button, a, input, textarea";
@@ -6,6 +7,8 @@ let focusables = [];
 let prevFocusedEl = null;
 const modal1 = document.getElementById('modal1');
 const modal2 = document.getElementById('modal2');
+const modal3 = document.getElementById('modal3');
+const modal4 = document.getElementById('modal4');
 
 const modulation = () => {
     focusables = Array.from(modal.querySelectorAll(focusableSelector));
@@ -37,11 +40,18 @@ const openModalAddWork = function(e) {
     modal2.classList.add('modal-display');
 }
 
+
+const openModalAddProfilePicture = function(e) {
+    e.preventDefault();
+    modal = document.getElementById('modal4');
+    modulation();
+    modal4.classList.add('modal-display');
+}
+
 export const closeModalButton = (e) => {
     if (modal === null) return;
     e.preventDefault();
-    modal1.classList.remove('modal-display');
-    modal2.classList.remove('modal-display');
+    modal.classList.remove('modal-display');
     modal.setAttribute('aria-hidden', 'true');
     modal.removeAttribute('aria-modal');
     modal.removeEventListener('click', closeModalButton);
@@ -50,7 +60,10 @@ export const closeModalButton = (e) => {
     modal = null;
     const gallery = document.querySelector('.gallery');
     gallery.innerHTML = '';
+    const profilePic = document.getElementById('profile-picture');
+    profilePic.src = '';
     createGalleryImage();
+    createProfilePicture();
 }
 
 document.querySelectorAll('.js-modal').forEach(
@@ -87,7 +100,11 @@ window.addEventListener('keydown', function(e){
     }
 });
 
+
 document.querySelector('.add-picture').addEventListener('click', openModalAddWork);
 
 document.querySelector('.fa-arrow-left-long').addEventListener('click', openModalGallery);
+
+document.getElementById('profilePicture-button').addEventListener('click', openModalAddProfilePicture);
+
 

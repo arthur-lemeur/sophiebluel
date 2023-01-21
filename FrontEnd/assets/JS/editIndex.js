@@ -31,6 +31,10 @@ export const createEditButton = () => {
     const introFigcaption = document.createElement('figcaption');
     introFigure.append(introFigcaption);
 
+    const formPicture = document.createElement('form');
+    formPicture.setAttribute('id', 'form-picture');
+    introFigcaption.appendChild(formPicture);
+
     const editProfilePictureInput = document.createElement('input');
     editProfilePictureInput.setAttribute('type', 'file');
     editProfilePictureInput.setAttribute('id', 'profilePictureInput');
@@ -38,14 +42,13 @@ export const createEditButton = () => {
     editProfilePictureInput.setAttribute('accept', 'image/*');
 
 
-    const editProfilePictureLabel = document.createElement('label');
+    const editProfilePictureLabel = document.createElement('a');
     editProfilePictureLabel.classList.add('editionButton');
     editProfilePictureLabel.innerHTML = "<i class=\"fa-regular fa-pen-to-square\"></i>modifier";
-    editProfilePictureLabel.setAttribute('id', 'profilePicture-button')
-    editProfilePictureLabel.setAttribute('for', 'profilePictureInput')
+    editProfilePictureLabel.setAttribute('id', 'profilePicture-button');
 
-    introFigcaption.appendChild(editProfilePictureInput);
-    introFigcaption.appendChild(editProfilePictureLabel);
+    formPicture.appendChild(editProfilePictureInput);
+    formPicture.appendChild(editProfilePictureLabel);
 
     const article = document.querySelector('#introduction article');
     const editDescriptionText = document.createElement('button');
